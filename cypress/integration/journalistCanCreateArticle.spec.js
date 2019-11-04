@@ -3,7 +3,7 @@ describe('User can create article', () => {
     cy.server()
     cy.route({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/articles',
+      url: 'https://classy-news-backend.herokuapp.com/api/v1/articles',
       response: 'fixture:successfully_created_article.json',
       status: 200
     })
@@ -31,7 +31,7 @@ describe('User can create article', () => {
     cy.server()
     cy.route({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/articles',
+      url: 'https://classy-news-backend.herokuapp.com/api/v1/articles',
       response: 'fixture:unsuccessfully_created_article.json',
       status: 400
     })
