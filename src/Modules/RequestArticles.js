@@ -50,4 +50,4 @@ const getArticle = async (chosenArticle) => {
   }
 }
 
-export { getData, submitArticle, getArticle }
+export { getData, submitArticle, getArticle } 
