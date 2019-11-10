@@ -4,7 +4,8 @@ import { Container, 
          Header, 
          Item, 
          Grid, 
-         Segment 
+         Segment,
+         Image 
         } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -35,8 +36,8 @@ class ListArticles extends Component {
   }
 
   render() {
-    let renderListArticles, error_message
-    const articleData = this.state.articles
+    let renderListArticles, error_message, latestArticle
+    const articleData = this.state.articles 
 
     if (this.state.error_message) {
       error_message = <p>{ this.state.error_message }</p>
@@ -65,8 +66,34 @@ class ListArticles extends Component {
           })}
         </>
       )
-    }
 
+      latestArticle = (
+        <>
+        {articleData.reduce(function(prev, current) {
+          let trim_ingress = prev.content.substr(0, 75)
+          let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
+          if (current.id > prev.id) {
+            return current
+          } else {
+            return <NavLink id={`article_${prev.id}`} key={prev.id} to={`/article/${prev.id}`}>
+                     <Item.Group> 
+                      <Image id={`image_${prev.id}`} size='large' src={prev.image} />
+                        <Item>
+                          <Item.Content>
+                            <Item.Description id={`publish_date_${prev.id}`}>{prev.publish_date}</Item.Description>
+                            <Item.Header as="h1" id={`title_${prev.id}`}>{prev.title}</Item.Header>
+                            <Item.Meta id={`content_${prev.id}`} name="article-content">{ingress}</Item.Meta>
+                            <Item.Extra id={`author_${prev.id}`}>{prev.author}</Item.Extra>
+                          </Item.Content>
+                        </Item>
+                      </Item.Group> 
+                    </NavLink>
+          }
+        })}
+        </>
+      )
+    }
+      
     return(
       <>
       <Container>
@@ -78,7 +105,7 @@ class ListArticles extends Component {
               </Header>
 
               <Container id="latest_news">
-                {renderListArticles}
+                {latestArticle}
               </Container>
             </Item.Group>
           </Grid.Column>
@@ -94,8 +121,6 @@ class ListArticles extends Component {
                 </Item.Group>
                 </Segment> 
                 {renderListArticles}
-              
-              
             </Grid.Column>
         </Grid>
         {error_message}
