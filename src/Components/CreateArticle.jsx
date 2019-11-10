@@ -52,9 +52,12 @@
                 <Form.Field>
                   <input name="title" id="title-input" placeholder="Title" onBlur={this.inputHandler} />
                 </Form.Field>
-                <Form.Field>
-                  <input name="content" id="content-input" placeholder="Content" onBlur ={this.inputHandler}/>
-                </Form.Field>
+                <Form.TextArea
+                  name="content" 
+                  id="content-input" 
+                  placeholder="Content" 
+                  onBlur ={this.inputHandler}
+                />
                 <Form.Field>
                   <input name="author" id="author-input" placeholder="Author" onBlur ={this.inputHandler}/>
                 </Form.Field>
