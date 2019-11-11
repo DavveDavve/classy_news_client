@@ -70,7 +70,6 @@ class ListArticles extends Component {
       latestArticle = (
         <>
         {articleData.reduce(function(prev, current) {
-          debugger
           let trim_ingress = current.content.substr(0, 75)
           let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
           if (current.id > prev.id || prev.key) {
