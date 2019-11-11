@@ -70,26 +70,26 @@ class ListArticles extends Component {
       latestArticle = (
         <>
         {articleData.reduce(function(prev, current) {
-          let trim_ingress = prev.content.substr(0, 75)
+          debugger
+          let trim_ingress = current.content.substr(0, 75)
           let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
-          if (current.id > prev.id) {
-            return current
-          } else {
-            return <NavLink id={`article_${prev.id}`} key={prev.id} to={`/article/${prev.id}`}>
-                     <Item.Group> 
-                      <Image id={`image_${prev.id}`} size='large' src={prev.image} />
-                        <Item>
-                          <Item.Content>
-                            <Item.Description id={`publish_date_${prev.id}`}>{prev.publish_date}</Item.Description>
-                            <Item.Header as="h5" id={`title_${prev.id}`}>{prev.title}</Item.Header>
-                            <Item.Meta id={`content_${prev.id}`} name="article-content">{ingress}</Item.Meta>
-                            <Item.Extra id={`author_${prev.id}`}>{prev.author}</Item.Extra>
-                          </Item.Content>
-                        </Item>
-                      </Item.Group> 
-                    </NavLink>
+          if (current.id > prev.id || prev.key) {
+            return <NavLink id={`article_${current.id}`} key={current.id} to={`/article/${current.id}`}>
+                         <Item.Group> 
+                          <Image id={`image_${current.id}`} size='large' src={current.image} />
+                            <Item>
+                              <Item.Content>
+                                <Item.Description id={`publish_date_${current.id}`}>{current.publish_date}</Item.Description>
+                                <Item.Header as="h5" id={`title_${current.id}`}>{current.title}</Item.Header>
+                                <Item.Meta id={`content_${current.id}`} name="article-content">{ingress}</Item.Meta>
+                                <Item.Extra id={`author_${current.id}`}>{current.author}</Item.Extra>
+                              </Item.Content>
+                            </Item>
+                          </Item.Group> 
+                        </NavLink>
+            }
           }
-        })}
+        )}
         </>
       )
     }
