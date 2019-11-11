@@ -46,7 +46,7 @@ class ListArticles extends Component {
     if (articleData.length !== 0) {
       renderListArticles = (
         <>
-          {articleData.map(article => {
+          {articleData.slice(0).reverse().map(article => {
             let trim_ingress = article.content.substr(0, 75)
             let ingress = trim_ingress.substr(0, Math.min(trim_ingress.length, trim_ingress.lastIndexOf(" "))) + ' ...'
 
