@@ -81,7 +81,7 @@ class ListArticles extends Component {
                         <Item>
                           <Item.Content>
                             <Item.Description id={`publish_date_${prev.id}`}>{prev.publish_date}</Item.Description>
-                            <Item.Header as="h1" id={`title_${prev.id}`}>{prev.title}</Item.Header>
+                            <Item.Header as="h3" id={`title_${prev.id}`}>{prev.title}</Item.Header>
                             <Item.Meta id={`content_${prev.id}`} name="article-content">{ingress}</Item.Meta>
                             <Item.Extra id={`author_${prev.id}`}>{prev.author}</Item.Extra>
                           </Item.Content>
